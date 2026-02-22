@@ -1,6 +1,10 @@
-// Source code is decompiled from a .class file using FernFlower decompiler (from Intellij IDEA).
 public class OOPSBannerApp {
-   public static void main(String[] var0) {
-      System.out.println("OOPS");
-   }
+    public static void main(String[] args) {
+        // Individual print statements for this banner
+        System.out.println("  *****   *****   *****    ***** ");
+        System.out.println(" *     * *     *  *    *  *      ");
+        System.out.println(" *     * *     *  *****    ***** ");
+        System.out.println(" *     * *     *  *             *");
+        System.out.println("  *****   *****   *        ***** ");
+    }
 }
