@@ -1,10 +1,20 @@
 public class OOPSBannerApp {
     public static void main(String[] args) {
-        // Individual print statements for this banner
-        System.out.println("  *****   *****   *****    ***** ");
-        System.out.println(" *     * *     *  *    *  *      ");
-        System.out.println(" *     * *     *  *****    ***** ");
-        System.out.println(" *     * *     *  *             *");
-        System.out.println("  *****   *****   *        ***** ");
+        String[] bannerLines = {
+            String.join(" ","   ****    ","   ****    ","**********  ","**********"),
+            String.join(" "," **     ** "," **     ** ","*********** ","**********"),
+            String.join(" ","**       **","**       **","**        **","**        "),
+            String.join(" ","**       **","**       **","**        **","**        "),
+            String.join(" ","**       **","**       **","**       ** ","**********"),
+            String.join(" ","**       **","**       **","**********  ","**********"),
+            String.join(" ","**       **","**       **","***         ","        **"),
+            String.join(" "," **     ** "," **     ** ","***         ","        **"),
+            String.join(" ","   ****    ","   ****    ","***         ","**********"),
+            };
+        for (String line : bannerLines) {
+            System.out.println(line);
+        }
     }
 }
+    
+
