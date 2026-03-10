@@ -1,4 +1,4 @@
-public class BannerApp {
+public class OOPSBannerApp {
     public static void main(String[] args) {
         // UC5: Array declaration + initialization combined with String.join() in single statements
         String[] bannerLines = {
