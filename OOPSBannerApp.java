@@ -1,73 +1,62 @@
+import java.util.HashMap;
+import java.util.Map;
+
 public class OOPSBannerApp {
 
-    // Static inner class - CharacterPatternMap (as specified in UC7)
-    static class CharacterPatternMap {
-        private char character;
-        private String[] pattern;
+    // Centralized HashMap: character → its pattern lines
+    private static Map<Character, String[]> characterPatternMap = new HashMap<>();
 
-        // Constructor
-        public CharacterPatternMap(char character, String[] pattern) {
-            this.character = character;
-            this.pattern = pattern;
-        }
+    // Populate the map once
+    static {
+        characterPatternMap.put('O', new String[]{
+            " OOO ",
+            "O   O",
+            "O   O",
+            "O   O",
+            " OOO "
+        });
+        characterPatternMap.put('P', new String[]{
+            "PPP  ",
+            "P  P ",
+            "PPP  ",
+            "P    ",
+            "P    "
+        });
+        characterPatternMap.put('S', new String[]{
+            " SSS ",
+            "S    ",
+            " SSS ",
+            "    S",
+            " SSS "
+        });
+    }
 
-        // Getter for character
-        public char getCharacter() {
-            return character;
-        }
+    // Retrieves pattern for a character using map lookup
+    private static String[] getPattern(char c) {
+        return characterPatternMap.getOrDefault(c, new String[]{
+            "?????",
+            "?????",
+            "?????",
+            "?????",
+            "?????"
+        });
+    }
 
-        // Getter for pattern
-        public String[] getPattern() {
-            return pattern;
+    // Renders the banner word using nested loops + StringBuilder
+    public static void renderBanner(String word) {
+        int rows = 5; // each character pattern has 5 rows
+
+        for (int row = 0; row < rows; row++) {
+            StringBuilder line = new StringBuilder();
+            for (char c : word.toCharArray()) {
+                String[] pattern = getPattern(c);
+                line.append(pattern[row]).append("  "); // spacing between letters
+            }
+            System.out.println(line.toString());
         }
     }
 
     public static void main(String[] args) {
-
-        // Centralized pattern objects using CharacterPatternMap
-        CharacterPatternMap patternO = new CharacterPatternMap('O', new String[]{
-            String.join("", "*","*","*","*","*"),
-            String.join("", "*"," "," "," ","*"),
-            String.join("", "*"," "," "," ","*"),
-            String.join("", "*"," "," "," ","*"),
-            String.join("", "*"," "," "," ","*"),
-            String.join("", "*"," "," "," ","*"),
-            String.join("", "*","*","*","*","*")
-        });
-
-        CharacterPatternMap patternP = new CharacterPatternMap('P', new String[]{
-            String.join("", "*","*","*","*","*"),
-            String.join("", "*"," "," "," ","*"),
-            String.join("", "*","*","*","*","*"),
-            String.join("", "*"," "," "," "," "),
-            String.join("", "*"," "," "," "," "),
-            String.join("", "*"," "," "," "," "),
-            String.join("", "*"," "," "," "," ")
-        });
-
-        CharacterPatternMap patternS = new CharacterPatternMap('S', new String[]{
-            String.join("", "*","*","*","*","*"),
-            String.join("", "*"," "," "," "," "),
-            String.join("", "*","*","*","*","*"),
-            String.join("", " "," "," "," ","*"),
-            String.join("", " "," "," "," ","*"),
-            String.join("", " "," "," "," ","*"),
-            String.join("", "*","*","*","*","*")
-        });
-
-        // OOPS = O, O, P, S - reusing patternO (DRY principle)
-        CharacterPatternMap[] word = {patternO, patternO, patternP, patternS};
-
-        // StringBuilder to build each row efficiently
-        for (int line = 0; line < 7; line++) {
-            StringBuilder row = new StringBuilder();
-            for (int i = 0; i < word.length; i++) {
-                row.append(word[i].getPattern()[line]);
-                if (i < word.length - 1) {
-                    row.append("  ");
-                }
-            }
-            System.out.println(row.toString());
-        }
+        renderBanner("OOPS");
     }
 }
